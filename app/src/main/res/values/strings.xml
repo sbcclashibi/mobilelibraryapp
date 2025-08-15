@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mobile Library App</string>
+    <string name="title_update_book">Update Book</string>
+    <string name="title_add_new_book">Add New Book</string>
+    <string name="label_title">Title</string>
+    <string name="label_author">Author</string>
+    <string name="label_publisher">Publisher</string>
+    <string name="label_isbn">ISBN</string>
+</resources>
