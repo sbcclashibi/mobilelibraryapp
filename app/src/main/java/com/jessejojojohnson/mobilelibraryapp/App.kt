@@ -3,6 +3,10 @@ package com.jessejojojohnson.mobilelibraryapp
 import android.app.Application
 import com.google.android.gms.common.moduleinstall.ModuleInstall
 import com.google.android.gms.common.moduleinstall.ModuleInstallRequest
+import com.google.firebase.Firebase
+import com.google.firebase.appcheck.appCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
+import com.google.firebase.initialize
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
@@ -18,6 +22,11 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+
+        Firebase.initialize(this)
+        Firebase.appCheck.installAppCheckProviderFactory(
+            PlayIntegrityAppCheckProviderFactory.getInstance()
+        )
 
         val options = GmsBarcodeScannerOptions.Builder()
             .setBarcodeFormats(

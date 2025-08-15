@@ -7,6 +7,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import com.google.firebase.firestore.toObjects
+import com.jessejojojohnson.mobilelibraryapp.App
 import com.jessejojojohnson.mobilelibraryapp.models.Book
 import com.jessejojojohnson.mobilelibraryapp.util.slog
 import com.jessejojojohnson.mobilelibraryapp.util.sloge
@@ -72,24 +73,24 @@ class LandingViewModel : ViewModel() {
 
     fun scan(): Flow<String?> {
         return callbackFlow {
-            trySend("1234598098354089")
-//            App.getInstance().getScanner().startScan()
-//                .addOnSuccessListener {
-//                    slog("Read barcode!")
-//                    slog(it.toString())
-//                    slog(it.displayValue!!)
-//                    slog(it.rawValue!!)
-//                    it.rawValue?.let { rawValue -> trySend(rawValue) }
-//                }
-//                .addOnCanceledListener {
-//                    slog("Cancelled")
-//                    cancel(message = "User cancelled")
-//                }
-//                .addOnFailureListener {
-//                    sloge("Failed")
-//                    sloge(it.toString())
-//                    cancel("Scanning failed", cause = it)
-//                }
+            //trySend("1234598098354089")
+            App.getInstance().getScanner().startScan()
+                .addOnSuccessListener {
+                    slog("Read barcode!")
+                    slog(it.toString())
+                    slog(it.displayValue!!)
+                    slog(it.rawValue!!)
+                    it.rawValue?.let { rawValue -> trySend(rawValue) }
+                }
+                .addOnCanceledListener {
+                    slog("Cancelled")
+                    cancel(message = "User cancelled")
+                }
+                .addOnFailureListener {
+                    sloge("Failed")
+                    sloge(it.toString())
+                    cancel("Scanning failed", cause = it)
+                }
             awaitClose { }
         }
     }
